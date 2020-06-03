@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 # Make PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR, and PROJECT_NAME available.
-set(PROJECT_NAME task1) 
+set(PROJECT_NAME task123) 
 project(${PROJECT_NAME})
 
 set(CMAKE_CXX_FLAGS "-g -Wall")
@@ -15,12 +15,12 @@ set(CMAKE_CXX_FLAGS "-g -Wall")
 #----------------------------------------------------------------------------
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 include_directories(${COMMON_INCLUDES})
-file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
+#file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
 
 
-set(SRC_FILES1 ${PROJECT_SOURCE_DIR}/src/task1.cpp)
-set(SRC_FILES2 ${PROJECT_SOURCE_DIR}/src/task2.cpp)
-set(SRC_FILES3 ${PROJECT_SOURCE_DIR}/src/task3.cpp)
+set(SRC_FILES1 ${PROJECT_SOURCE_DIR}/src/Task1.cpp)
+set(SRC_FILES2 ${PROJECT_SOURCE_DIR}/src/Task2.cpp)
+set(SRC_FILES3 ${PROJECT_SOURCE_DIR}/src/Task3.cpp)
 
 
 set(CMAKE_CXX_STANDARD 11)
@@ -30,14 +30,13 @@ add_library(task2_lib ${SRC_FILES2})
 add_library(task3_lib ${SRC_FILES3})
 
 
-add_executable(task1 ${PROJECT_SOURCE_DIR}/src/main1.cpp)
-add_executable(task2 ${PROJECT_SOURCE_DIR}/src/main2.cpp)
-add_executable(task3 ${PROJECT_SOURCE_DIR}/src/main3.cpp)
+add_executable(task1 ${PROJECT_SOURCE_DIR}/src/Task1.cpp)
+add_executable(task2 ${PROJECT_SOURCE_DIR}/src/Task2.cpp)
+add_executable(task3 ${PROJECT_SOURCE_DIR}/src/Task3.cpp)
 
 target_link_libraries(task1 task1_lib)
 target_link_libraries(task2 task2_lib)
 target_link_libraries(task3 task3_lib)
-
 
 ################################
 # Testing
@@ -82,3 +81,4 @@ if (BUILD_TESTS)
   endif() #CMAKE_BUILD_TYPE STREQUAL "Coverage"
 
 endif()
+
