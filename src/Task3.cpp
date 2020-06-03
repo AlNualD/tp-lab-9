@@ -1,18 +1,9 @@
-//#include <iostream>
-//#include <vector>
-//#include <queue>
-//#include <mutex>
-//#include <thread>
-
 #include <iostream>
-#include <string>
 #include <vector>
-#include <algorithm>
-#include <thread>
-#include <mutex>
 #include <queue>
-#include <random>
-#include <chrono>
+#include <mutex>
+#include <thread>
+
 
 using namespace std;
 
@@ -36,7 +27,7 @@ void Cashbox(queue<Buyer*>* buyers, int num) {
 		}
 		mut.lock();
 		buyers->pop();
-		cout << num << "*** buyer served " << buyer->number << endl;
+		cout << num << " *** buyer served " << buyer->number << endl;
 		delete buyer;
 		if (buyers->empty()) {
 			cout << "cashbox is closed " << num << endl;
@@ -51,7 +42,6 @@ void Cashbox(queue<Buyer*>* buyers, int num) {
 int main() {
 	vector<queue<Buyer*>*> shop;
 	vector<thread*> ts;
-	vector<Buyer*> all_buyers;
 	int number_buyer = 1;
 	int number_cashbox = 1;
 	for (int i = 0; i < 30; i++) {
@@ -60,7 +50,6 @@ int main() {
 
 		int amount = rand() % 10 + 1;
 		Buyer*  buyer = new Buyer;
-		//all_buyers.push_back(buyer);
 		number_buyer++;
 		buyer->number = number_buyer;
 		for (int j = 0; j < amount; j++) {
@@ -94,10 +83,6 @@ int main() {
 	for (thread* t : ts) {
 		t->join();
 	}
-
-	//for (Buyer* buyer : all_buyers) {
-	//	delete buyer;
-	//}
 
 	return 0;
 }
